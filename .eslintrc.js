@@ -25,8 +25,8 @@ module.exports = {
         "vue/multiline-html-element-content-newline": "off",
         "vue/name-property-casing": ["error", "PascalCase"],
         "vue/no-v-html": "off",
-        'accessor-pairs': 2,
-        'arrow-spacing': [2, {
+        'accessor-pairs': 0,
+        'arrow-spacing': [0, {
             'before': true,
             'after': true
         }],
@@ -38,7 +38,7 @@ module.exports = {
             'properties': 'always'
         }],
         'comma-dangle': [2, 'never'],
-        'comma-spacing': [2, {
+        'comma-spacing': [0, {
             'before': false,
             'after': true
         }],
@@ -48,22 +48,22 @@ module.exports = {
         'dot-location': [2, 'property'],
         'eol-last': 0,
         'eqeqeq': ["error", "always", { "null": "ignore" }],
-        'generator-star-spacing': [2, {
+        'generator-star-spacing': [0, {
             'before': true,
             'after': true
         }],
         'handle-callback-err': [2, '^(err|error)$'],
         'indent': ["off"],
         'jsx-quotes': [2, 'prefer-single'],
-        'key-spacing': [2, {
+        'key-spacing': [0, {
             'beforeColon': false,
             'afterColon': true
         }],
-        'keyword-spacing': [2, {
+        'keyword-spacing': [0, {
             'before': true,
             'after': true
         }],
-        'new-cap': [2, {
+        'new-cap': [0, {
             'newIsCap': true,
             'capIsNew': false
         }],
@@ -102,8 +102,8 @@ module.exports = {
             'allowSwitch': false
         }],
         'no-lone-blocks': 2,
-        'no-mixed-spaces-and-tabs': 2,
-        'no-multi-spaces': 2,
+        'no-mixed-spaces-and-tabs': 0,
+        'no-multi-spaces': 0,
         'no-multi-str': 2,
         'no-multiple-empty-lines': [2, {
             'max': 1
@@ -120,17 +120,17 @@ module.exports = {
         'no-path-concat': 2,
         'no-proto': 2,
         'no-redeclare': 2,
-        'no-regex-spaces': 2,
+        'no-regex-spaces': 0,
         'no-return-assign': [2, 'except-parens'],
         'no-self-assign': 2,
         'no-self-compare': 2,
         'no-sequences': 2,
         'no-shadow-restricted-names': 2,
-        'no-spaced-func': 2,
+        'no-spaced-func': 0,
         'no-sparse-arrays': 2,
         'no-this-before-super': 2,
         'no-throw-literal': 2,
-        'no-trailing-spaces': 2,
+        'no-trailing-spaces': 0,
         'no-undef': 2,
         'no-undef-init': 2,
         'no-unexpected-multiline': 2,
@@ -148,9 +148,9 @@ module.exports = {
         'no-useless-computed-key': 2,
         'no-useless-constructor': 2,
         'no-useless-escape': 0,
-        'no-whitespace-before-property': 2,
+        'no-whitespace-before-property': 0,
         'no-with': 2,
-        'one-var': [2, {
+        'one-var': [0, {
             'initialized': 'never'
         }],
         'operator-linebreak': [2, 'after', {
@@ -159,25 +159,25 @@ module.exports = {
                 ':': 'before'
             }
         }],
-        'padded-blocks': [2, 'never'],
+        'padded-blocks': [0, 'never'],
         'quotes': [2, 'single', {
             'avoidEscape': true,
             'allowTemplateLiterals': true
         }],
-        'semi': [2, 'never'],
-        'semi-spacing': [2, {
+        'semi': [0, 'never'],
+        'semi-spacing': [0, {
             'before': false,
-            'after': true
+            'after': false
         }],
-        'space-before-blocks': [2, 'always'],
-        'space-before-function-paren': [2, 'never'],
-        'space-in-parens': [2, 'never'],
-        'space-infix-ops': 2,
-        'space-unary-ops': [2, {
-            'words': true,
+        'space-before-blocks': [0, 'always'],
+        'space-before-function-paren': [0, 'never'],
+        'space-in-parens': [0, 'never'],
+        'space-infix-ops': 0,
+        'space-unary-ops': [0, {
+            'words': false,
             'nonwords': false
         }],
-        'spaced-comment': [2, 'always', {
+        'spaced-comment': [0, 'always', {
             'markers': ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
         }],
         'template-curly-spacing': [2, 'never'],
@@ -188,9 +188,9 @@ module.exports = {
         'yoda': [2, 'never'],
         'prefer-const': 2,
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-        'object-curly-spacing': [2, 'always', {
+        'object-curly-spacing': [0, 'always', {
             objectsInObjects: false
         }],
-        'array-bracket-spacing': [2, 'never']
+        'array-bracket-spacing': [0, 'never']
     }
 }

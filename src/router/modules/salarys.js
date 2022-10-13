@@ -10,7 +10,8 @@ export default {
             import ('@/views/salarys'),
         //路由元信息 其实就是一个存储数据的地方 可以放任何内容
         meta: {
-            title: '工资'
+            title: '工资',
+            icon: 'education'
         } //因为左侧导航读取了这里的title属性
     }]
 }

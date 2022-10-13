@@ -11,7 +11,8 @@ export default {
             import ('@/views/employees'),
         //路由元信息 其实就是一个存储数据的地方 可以放任何内容
         meta: {
-            title: '员工信息'
+            title: '员工信息',
+            icon: 'drag'
         } //因为左侧导航读取了这里的title属性
     }]
 }

@@ -44,7 +44,17 @@ export const constantRoutes = [{
                 import ('@/views/login/index'),
             hidden: true
         },
-
+        {
+            path: '/import', //公共的表格导入路由
+            component: () =>
+                import ('@/views/import/index'),
+            hidden: true,
+            children: [{
+                path: '',
+                component: () =>
+                    import ('@/components/UploadExcel/UploadExcel')
+            }]
+        },
         {
             path: '/404',
             component: () =>

@@ -27,3 +27,8 @@ export function logout() {
         method: 'post'
     })
 }
+export function getUserDetailById(id) { //获取用户基本信息
+    return request({
+        url: `/sys/user/${id}`
+    })
+}

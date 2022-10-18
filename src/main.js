@@ -15,7 +15,9 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 import * as directive from '@/directives'
-
+//引入一个全局的组件
+import Component from '@/components'
+import * as filters from '@/filters'
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -28,13 +30,17 @@ if (process.env.NODE_ENV === 'production') {
     const { mockXHR } = require('../mock')
     mockXHR()
 }
-
-// set ElementUI lang to EN
+// 将组件插槽全局引用
+Vue.use(Component)
+    // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
     // 如果想要中文版 element-ui，按如下方式声明
     // Vue.use(ElementUI)
 Object.keys(directive).forEach(key => {
     Vue.directive(key, directive[key]) // 注册所有的自定义指令
+})
+Object.keys(filters).forEach(key => {
+    Vue.filter(key, filters[key]) //注册所有过滤器
 })
 Vue.config.productionTip = false
 

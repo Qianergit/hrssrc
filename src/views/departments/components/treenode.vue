@@ -43,10 +43,10 @@ export default {
     operateDepts(type){
         if(type === 'add'){
             //这里是添加
-             this.$emit('addDepts',this.treeNode)
+             this.$emit('addDepts',this.treenode)
         }else if(type === 'edit'){
            //这里是编辑
-            alert('您点击了编辑')
+           this.$emit('editDepts',this.treenode)
         }else{
           
           this.$confirm('您确定要删除这个部门么').then(()=>{

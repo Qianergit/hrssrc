@@ -4,6 +4,7 @@ const getters = {
     token: state => state.user.token,
     name: state => state.user.UserInfo.username,
     userId: state => state.user.UserInfo.userId,
-    staffPhoto: state => state.user.UserInfo.staffPhoto // 这个是头像的快捷访问
+    staffPhoto: state => state.user.UserInfo.staffPhoto, // 这个是头像的快捷访问
+    companyId: state => state.user.UserInfo.companyId // 建立对于user模块的companyId的快捷访问
 }
 export default getters

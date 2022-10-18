@@ -9,10 +9,10 @@
         <el-tree :data="departs" :props="defaultProps" :default-expand-all="true">
           <!-- 插入的内容会根据节点数量，有多少节点循环多少次 -->
           <!-- scoped-solt是作用域插槽，使用slot-scoped='变量可以拿到tree中传过来的值' -->
-          <tree-tools slot-scope="{data}" :treenode="data" @delDepts="getDepartments()" @addDepts="addDepts" />
+          <tree-tools slot-scope="{data}" :treenode="data" @delDepts="getDepartments" @addDepts="addDepts" @editDepts="editDepts" />
         </el-tree>
       </el-card>
-      <add-dept :show-dialog="showDialog" />
+      <add-dept ref="addDept" :show-dialog.sync="showDialog" :treenode="node" @addDepts="getDepartments" />
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ methods:{
     try{
       const result = await getDepartmentsAPI()
           console.log(result)
-          this.company={name:result.companyName,manager:'负责人'}
+          this.company={name:result.companyName,manager:'负责人',id:''}
           this.departs=tranListToTreeData(result.depts,'')
           }catch(err){ 
             console.log(err) 
@@ -55,6 +55,11 @@ methods:{
   addDepts(node){
     this.showDialog=true
     this.node=node
+  },
+  editDepts(node){
+    this.showDialog=true
+    this.node=node
+    this.$refs.addDept.getDepartDetail(node.id)
   }
 }
 }

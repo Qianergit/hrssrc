@@ -14,6 +14,35 @@ const name = defaultSettings.title || 'vue Admin Template' // page title
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+let cdn = { css: [], js: [] }
+const isProd = process.env.NODE_ENV === 'production'
+let externals = {}
+if (isProd) {
+    // 只有生产环境才有必要去做排除和cdn的注入
+    externals = {
+        //要排除的包名
+        'element-ui': 'ELEMENT',
+        'xlsx': 'XLSX',
+        'vue': 'Vue'
+
+    }
+    cdn = {
+        css: [
+            // 这里方css的样式表
+            // element-ui css
+            'https://unpkg.com/element-ui/lib/theme-chalk/index.css' // 样式表
+        ],
+        js: [
+            // vue must at first!
+            'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js', // vuejs
+            // element-ui js
+            'https://unpkg.com/element-ui/lib/index.js', // elementUI
+            'https://cdn.jsdelivr.net/npm/xlsx@0.16.6/dist/jszip.min.js',
+            'https://cdn.jsdelivr.net/npm/xlsx@0.16.6/dist/xlsx.full.min.js'
+        ]
+    }
+
+}
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -55,19 +84,30 @@ module.exports = {
             alias: {
                 '@': resolve('src')
             }
-        }
+        },
+        //key是要排除的包名 value实际上是实际引入的包的全局的变量名
+        //    因为要排除element-ui 所以后面要引入cdn文件 cnd文件中有elementui的全局变量名
+        // 首先会排除掉，定义的包名空出来的位置会用变量来替换
+        externals: externals
     },
     chainWebpack(config) {
         // it can improve the speed of the first screen, it is recommended to turn on preload
         config.plugin('preload').tap(() => [{
-            rel: 'preload',
-            // to ignore runtime.js
-            // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-            fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
-            include: 'initial'
-        }])
-
-        // when there are many pages, it will cause too many meaningless requests
+                rel: 'preload',
+                // to ignore runtime.js
+                // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+                fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+                include: 'initial'
+            }])
+            //   注入cdn的变量
+            //这行代码会在打包的时候执行，会将cdn的内容打包进去
+        config.plugin('html').tap((args) => {
+                //args是注入html模板的一个变量
+                args[0].cdn = cdn //这个cdn就是上面定义的变量
+                return args
+            })
+            // 注入cdn变量
+            // when there are many pages, it will cause too many meaningless requests
         config.plugins.delete('prefetch')
 
         // set svg-sprite-loader

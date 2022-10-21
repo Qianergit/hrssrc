@@ -6,6 +6,7 @@ export default {
     path: '/employees',
     component: Layout,
     children: [{
+            name: 'employees',
             path: '',
             component: () =>
                 import ('@/views/employees'),

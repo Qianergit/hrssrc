@@ -1,17 +1,50 @@
+
 import Layout from '@/layout'
+
 export default {
-    //路由规则
-    name: 'social', //给模块的一级路由加一个name属性，在最后做权限的时候会用到
-    path: '/social',
-    component: Layout,
-    children: [{
-        path: '',
-        component: () =>
-            import ('@/views/social'),
-        //路由元信息 其实就是一个存储数据的地方 可以放任何内容
-        meta: {
-            title: '社保',
-            icon: 'clipboard'
-        } //因为左侧导航读取了这里的title属性
-    }]
+  path: '/social_securitys',
+  component: Layout,
+  name: 'social_securitys',
+  children: [
+    {
+      path: '',
+      component: () => import('@/views/social'),
+      name: 'social_securitys',
+      meta: {
+        title: '社保',
+        icon: 'table'
+
+      }
+    },
+    // 报表
+    {
+      path: 'detail/:id',
+      hidden: true,
+      component: () => import('@/views/social/detail'),
+      name: 'socialDetail',
+      meta: {
+        title: '社保'
+      }
+    },
+    // 历史归档
+    {
+      path: 'historicalArchiving',
+      hidden: true,
+      component: () => import('@/views/social/historical'),
+      name: 'socialHistorical',
+      meta: {
+        title: '历史归档'
+      }
+    },
+    // 月报表
+    {
+      path: 'monthStatement',
+      component: () => import('@/views/social/month'),
+      name: 'socialMonthStatement',
+      hidden: true,
+      meta: {
+        title: '当月报表'
+      }
+    }
+  ]
 }

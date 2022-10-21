@@ -3,7 +3,13 @@
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
+          <!-- 每个组件都会有$t的方法 会返回当前模式下的语言包的内容 -->
+          <!-- $k（）可以传入带点的字符串表示查询嵌套结构 -->
+          <item 
+            :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" 
+            :title="$t('route.' + onlyOneChild.name)"
+          />
+          <!--                                                              :title="onlyOneChild.meta.title" -->
         </el-menu-item>
       </app-link>
     </template>

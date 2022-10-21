@@ -5,6 +5,7 @@ export default {
     path: '/setting',
     component: Layout,
     children: [{
+        name: 'settings',
         path: '',
         component: () =>
             import ('@/views/setting'),
